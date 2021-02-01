@@ -1,0 +1,42 @@
+$app-font-dir: "./fonts" !default;
+
+@font-face {
+  font-family: 'Whitney';
+  src: url('#{$app-font-dir}/Whitney/Whitney-Bold.eot');
+  src: local('Whitney-Bold'),
+  url('#{$app-font-dir}/Whitney/Whitney-Bold.woff2') format('woff2'),
+  url('#{$app-font-dir}/Whitney/Whitney-Bold.woff') format('woff'),
+  url('#{$app-font-dir}/Whitney/Whitney-Bold.ttf') format('truetype'),
+  url('#{$app-font-dir}/Whitney/Whitney-Bold.eot?#iefix') format('embedded-opentype'),
+  url('#{$app-font-dir}/Whitney/Whitney-Bold.svg#Whitney-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'Whitney';
+  src: url('#{$app-font-dir}/Whitney/Whitney-Medium.eot');
+  src: local('Whitney-Medium'),
+  url('#{$app-font-dir}/Whitney/Whitney-Medium.woff2') format('woff2'),
+  url('#{$app-font-dir}/Whitney/Whitney-Medium.woff') format('woff'),
+  url('#{$app-font-dir}/Whitney/Whitney-Medium.eot?#iefix') format('embedded-opentype'),
+  url('#{$app-font-dir}/Whitney/Whitney-Medium.ttf') format('truetype'),
+  url('#{$app-font-dir}/Whitney/Whitney-Medium.svg#Whitney-Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Whitney';
+  src: url('#{$app-font-dir}/Whitney/Whitney-Semibold.eot');
+  src: local('Whitney-Semibold'),
+  url('#{$app-font-dir}/Whitney/Whitney-Semibold.woff2') format('woff2'),
+  url('#{$app-font-dir}/Whitney/Whitney-Semibold.woff') format('woff'),
+  url('#{$app-font-dir}/Whitney/Whitney-Semibold.eot?#iefix') format('embedded-opentype'),
+  url('#{$app-font-dir}/Whitney/Whitney-Semibold.ttf') format('truetype'),
+  url('#{$app-font-dir}/Whitney/Whitney-Semibold.svg#Whitney-Semibold') format('svg');
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}

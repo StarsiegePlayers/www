@@ -1,5 +1,7 @@
 <script>
-    import { Link } from "svelte-routing";
+    import {Link} from "svelte-routing";
+    import Icon from 'fa-svelte';
+    import {faCaretRight} from '@fortawesome/free-solid-svg-icons';
 
     export let href = "";
     export let isActive = false
@@ -7,15 +9,17 @@
 
     function getProps({ location, href, isPartiallyCurrent, isCurrent }) {
         isActive = location.pathname === href
-        let props = {
-            class: "list-group-item list-group-item-action bg-dark text-yellow"
-        }
-
-        extrapadding ? props.class += " extra-padding" : null
-        isActive ? props.class += " active" : null
-
-        return props;
     }
+
 </script>
 
-<Link to="{href}" getProps="{getProps}">{#if isActive}<span>&rsaquo;</span>{/if} <slot/></Link>
+<style>
+    :global(#left-nav span div a) {
+        padding-left: 40px;
+    }
+</style>
+
+<Link class="list-group-item list-group-item-action bg-dark text-yellow {isActive ? 'active' : ''} {extrapadding ? 'extra-padding' : ''}"
+      getProps="{getProps}"
+      to="{href}">{#if isActive}<Icon icon={faCaretRight} />{/if}<slot/>
+</Link>

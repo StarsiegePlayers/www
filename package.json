@@ -1,29 +1,36 @@
 {
-  "name": "mainsite-www",
+  "name": "www",
   "version": "0.0.1",
   "scripts": {
+    "clean": "del-cli --force public && mkdir public",
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public --single --ignores '^/static' --host 0.0.0.0"
   },
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@modular-css/svelte": "^25.6.0",
     "@rollup/plugin-commonjs": "11.0.2",
     "@rollup/plugin-node-resolve": "^7.0.0",
+    "bootstrap": "^5.0.0-beta1",
+    "bootswatch": "^4.6.0",
+    "del-cli": "^3.0.1",
+    "fa-svelte": "^3.1.0",
+    "mdsvex": "^0.8.9",
     "postcss": "^7.0.35",
     "rollup": "^1.20.0",
-    "rollup-plugin-copy": "^3.3.0",
-    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-copy-watch": "^0.0.1",
     "rollup-plugin-livereload": "^1.0.0",
+    "rollup-plugin-scss": "^2.6.1",
     "rollup-plugin-svelte": "~6.1.1",
     "rollup-plugin-terser": "^5.1.2",
-    "svelte": "^3.0.0",
-    "svelte-preprocess": "^4.6.5"
-  },
-  "dependencies": {
-    "bootstrap": "^4.4.1",
-    "rollup-plugin-delete": "^2.0.0",
+    "sass": "^1.32.5",
     "sirv-cli": "^0.4.4",
-    "svelte-routing": "^1.5.0"
+    "svelte": "^3.0.0",
+    "svelte-preprocess": "^4.6.5",
+    "svelte-routing": "^1.5.0",
+    "timeago.js": "^4.0.2"
   }
 }

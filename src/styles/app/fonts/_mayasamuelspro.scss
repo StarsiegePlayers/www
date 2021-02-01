@@ -1,0 +1,15 @@
+@import "vars";
+
+@font-face {
+  font-family: 'MayaSamuelsPro';
+  src: url('#{$app-font-dir}/MayaSamuelsPro/MayaSamuelsPro-Bold.eot');
+  src: local('☞MayaSamuelsPro-Bold'), local('MayaSamuelsPro-Bold'),
+  url('#{$app-font-dir}/MayaSamuelsPro/MayaSamuelsPro-Bold.woff2') format('woff2'),
+  url('#{$app-font-dir}/MayaSamuelsPro/MayaSamuelsPro-Bold.woff') format('woff'),
+  url('#{$app-font-dir}/MayaSamuelsPro/MayaSamuelsPro-Bold.ttf') format('truetype'),
+  url('#{$app-font-dir}/MayaSamuelsPro/MayaSamuelsPro-Bold.eot?#iefix') format('embedded-opentype'),
+  url('#{$app-font-dir}/MayaSamuelsPro/MayaSamuelsPro-Bold.svg#MayaSamuelsPro-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+  font-display: block;
+}

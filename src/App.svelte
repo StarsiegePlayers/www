@@ -1,12 +1,27 @@
 <script>
-import Router from './routes/Router.svelte'
+    import {onDestroy, onMount} from 'svelte';
+    import {globalHistory} from 'svelte-routing/src/history';
+    import {currentPath} from "./store/history.js"
+
+    import Router from './Router.svelte'
+
+    let unsub;
+
+onMount(() => {
+    unsub = globalHistory.listen(({ location, action }) => {
+        $currentPath = location.pathname
+    })
+})
+
+onDestroy(() => {
+    unsub()
+})
+
 </script>
 
-<style>
-    /* Global CSS Imports */
-    :global(.list-group-item.active) {
-        font-weight: bold;
-    }
+<style global lang="scss">
+    @import "./styles/app";
 </style>
+
 
 <Router/>

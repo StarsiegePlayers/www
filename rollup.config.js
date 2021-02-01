@@ -2,10 +2,10 @@ import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
-import { terser } from 'rollup-plugin-terser';
-import copy from 'rollup-plugin-copy'
-import sveltePreprocess from 'svelte-preprocess';
-import css from 'rollup-plugin-css-only'
+import {terser} from 'rollup-plugin-terser';
+import preprocess from 'svelte-preprocess';
+import {mdsvex} from "mdsvex";
+import copy from 'rollup-plugin-copy-watch';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -19,22 +19,20 @@ export default {
 	},
 	plugins: [
 		copy({
+			watch: 'static',
 			targets: [
-				//{src: 'node_modules/purecss/build/pure-min.css' , dest: 'public/static' },
-				//{src: 'node_modules/bootstrap/dist/css/bootstrap.min.css' , dest: 'public/static' }
-				{ src: 'src/css/*', dest: 'public/static' },
-				{ src: 'src/img/*.png', dest: 'public/static/img' },
+				{ src: 'static', dest: 'public/' },
+				{ src: 'static/index.html', dest: 'public/' }
 			],
-
-		   	verbose: true
+			verbose: true
 		}),
 		svelte({
+			extensions: [".svelte", ".md"],
 			preprocess: [
-				css({ output: 'bundle.css' }),
-				sveltePreprocess({
-					sourceMap: true,
-					globalStyle: {}
-				}),
+				preprocess(),
+				mdsvex({
+					extensions: [".md"]
+				})
 			],
 			// enable run-time checks when not in production
 			dev: !production,
@@ -42,7 +40,7 @@ export default {
 			// a separate file - better for performance
 			css: css => {
 				css.write('app.css');
-			}
+			},
 		}),
 
 		// If you have external dependencies installed from
@@ -69,7 +67,7 @@ export default {
 		production && terser()
 	],
 	watch: {
-		clearScreen: false
+		clearScreen: true
 	}
 };
 

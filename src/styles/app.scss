@@ -1,0 +1,23 @@
+// main app config
+$app-font-dir: "./fonts";
+
+// base app overrides and fonts
+@import "app/fonts/fonts";
+@import "app/overrides";
+
+// bootstrap things
+$web-font-path: '';
+@import "node_modules/bootswatch/dist/darkly/variables";
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/bootswatch/dist/darkly/bootswatch";
+
+// font-awesome things
+$fa-font-path: '#{$app-font-dir}/FontAwesome';
+@import "app/brandcolors";
+@import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+@import "node_modules/@fortawesome/fontawesome-free/scss/regular";
+@import "node_modules/@fortawesome/fontawesome-free/scss/solid";
+@import "node_modules/@fortawesome/fontawesome-free/scss/brands";
+
+// discord widget things
+@import "discord/styles";
