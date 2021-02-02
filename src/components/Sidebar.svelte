@@ -11,6 +11,11 @@
   #top-nav {
     border-bottom-color: $border-color;
   }
+
+  #main-content {
+    padding-top: 1.5rem;
+  }
+
 </style>
 
 <div class="d-flex" id="wrapper" class:toggled={menuActive}>
@@ -31,7 +36,7 @@
                 <slot name="top-right-content"/>
             </div>
         </nav>
-        <div class="container-fluid">
+        <div id="main-content" class="container">
             <slot name="content" />
         </div>
     </div>

@@ -7,16 +7,15 @@
 
     let unsub;
 
-onMount(() => {
-    unsub = globalHistory.listen(({ location, action }) => {
-        $currentPath = location.pathname
+    onMount(() => {
+        unsub = globalHistory.listen(({ location, action }) => {
+            $currentPath = location.pathname
+        })
     })
-})
 
-onDestroy(() => {
-    unsub()
-})
-
+    onDestroy(() => {
+        unsub()
+    })
 </script>
 
 <style global lang="scss">

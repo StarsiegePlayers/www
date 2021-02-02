@@ -1,0 +1,22 @@
+<script>
+    import Icon from "fa-svelte";
+    import {faEdit} from "@fortawesome/free-solid-svg-icons"
+    import config from "../store/config";
+    export let title;
+    export let file;
+</script>
+
+<style>
+    .push-left {
+        margin-left: 0.5rem;
+    }
+</style>
+
+<div class="d-flex flex-wrap border-bottom">
+    <div><h1>{title}</h1></div>
+    <div class="ms-auto align-self-end"><a href="{config.GitContentURL}/{file}">Edit me on GitHub!<span class="push-left"><Icon icon={faEdit}/></span></a></div>
+</div>
+
+<div class="row">
+    <slot />
+</div>

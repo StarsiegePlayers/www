@@ -1,6 +1,4 @@
-$body-bg: black;
-$primary: #18303f;
-$border-color: #003977;
+@import "variables";
 
 body {
   overflow-x: hidden;
@@ -8,10 +6,6 @@ body {
 
 .navbar {
   padding: 0 0.5rem;
-}
-
-.container-fluid {
-  padding-top: 15px;
 }
 
 #sidebar-wrapper {

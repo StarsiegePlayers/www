@@ -7,11 +7,11 @@
 
     // routes
     import Error404 from "./views/404.svelte";
-    import config from "./config"
+    import config from "./store/routes"
 </script>
 
 <style>
-    #discord-link {
+    #header-image {
         height: 2.3rem;
         width: 20rem;
         object-fit: cover;
@@ -24,7 +24,7 @@
     </span>
 
     <span slot="top-right-content">
-        <a href={config.Discord.Link} ><img alt={config.Discord.Text} id="discord-link" src={config.Discord.Image}/></a>
+        <a href={config.Discord.Invite} ><img alt={config.Discord.Text} id="header-image" src={config.Discord.Image}/></a>
     </span>
 
     <span slot="links">

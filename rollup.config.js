@@ -4,42 +4,69 @@ import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import {terser} from 'rollup-plugin-terser';
 import preprocess from 'svelte-preprocess';
-import {mdsvex} from "mdsvex";
 import copy from 'rollup-plugin-copy-watch';
+import prodbuild from "./prodbuild";
 
-const production = !process.env.ROLLUP_WATCH;
+// MD Parsing and extensions
+import {mdsvex} from "mdsvex";
+import remark_github from "remark-github";
+import remark_a11yEmoji from '@fec/remark-a11y-emoji';
+import remark_containers from "remark-containers";
+import remark_jargon from "remark-jargon"
+import remark_jargonfile from "./content/jargonfile"
+import rehype_slug from "rehype-slug";
+import rehype_meta from "rehype-meta"; //https://github.com/rehypejs/rehype-meta#config
+import rehype_meta_default from "./content/defaultMetaConfig";
+
+const PROD = !process.env.ROLLUP_WATCH;
+const OUT_DIR = "public";
+const SOURCE_STATIC_DIR = "static";
+const SOURCE_DIR = "src";
 
 export default {
-	input: 'src/main.js',
+	input: `${SOURCE_DIR}/main.js`,
 	output: {
-		sourcemap: true,
+		sourcemap: !PROD,
 		format: 'iife',
 		name: 'app',
-		file: 'public/static/app.js'
+		file: `${OUT_DIR}/static/app.[hash].js`
 	},
 	plugins: [
 		copy({
-			watch: 'static',
+			watch: SOURCE_STATIC_DIR,
 			targets: [
-				{ src: 'static', dest: 'public/' },
-				{ src: 'static/index.html', dest: 'public/' }
+				{ src: SOURCE_STATIC_DIR, dest: `${OUT_DIR}/` },
+				{ src: `${SOURCE_STATIC_DIR}/index.html`, dest: `${OUT_DIR}/` }
 			],
 			verbose: true
 		}),
 		svelte({
 			extensions: [".svelte", ".md"],
+
 			preprocess: [
 				preprocess(),
 				mdsvex({
-					extensions: [".md"]
+					extensions: [".md"],
+					layout:{
+						_: "./src/views/MDDefaultLayout.svelte",
+					},
+					remarkPlugins: [
+						remark_github,
+						remark_a11yEmoji,
+						remark_containers,
+						[ remark_jargon, { jargon:  remark_jargonfile}]
+					],
+					rehypePlugins: [
+						rehype_slug,
+						[rehype_meta, rehype_meta_default ]
+					]
 				})
 			],
+
 			// enable run-time checks when not in production
-			dev: !production,
-			// we'll extract any component CSS out into
-			// a separate file - better for performance
+			dev: !PROD,
 			css: css => {
-				css.write('app.css');
+				css.write('app.[hash].css', !PROD);
 			},
 		}),
 
@@ -56,18 +83,19 @@ export default {
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
-		!production && serve(),
+		!PROD && serve(),
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
-		!production && livereload('public'),
+		!PROD && livereload(OUT_DIR),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
-		production && terser()
+		PROD && terser(),
+		PROD && prodbuild(),
 	],
 	watch: {
-		clearScreen: true
+		clearScreen: false
 	}
 };
 
