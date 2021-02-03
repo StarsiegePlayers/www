@@ -1,10 +1,12 @@
-import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import typescript from '@rollup/plugin-typescript';
+import svelte from 'rollup-plugin-svelte';
 import livereload from 'rollup-plugin-livereload';
 import {terser} from 'rollup-plugin-terser';
-import preprocess from 'svelte-preprocess';
 import copy from 'rollup-plugin-copy-watch';
+import css from 'rollup-plugin-css-only';
+import preprocess from 'svelte-preprocess';
 import prodbuild from "./prodbuild";
 
 // MD Parsing and extensions
@@ -24,7 +26,7 @@ const SOURCE_STATIC_DIR = "static";
 const SOURCE_DIR = "src";
 
 export default {
-	input: `${SOURCE_DIR}/main.js`,
+	input: `${SOURCE_DIR}/main.ts`,
 	output: {
 		sourcemap: !PROD,
 		format: 'iife',
@@ -40,7 +42,13 @@ export default {
 			],
 			verbose: true
 		}),
+
 		svelte({
+			compilerOptions: {
+				// enable run-time checks when not in production
+				dev: !PROD
+			},
+
 			extensions: [".svelte", ".md"],
 
 			preprocess: [
@@ -62,13 +70,11 @@ export default {
 					]
 				})
 			],
-
-			// enable run-time checks when not in production
-			dev: !PROD,
-			css: css => {
-				css.write('app.[hash].css', !PROD);
-			},
 		}),
+
+		// we'll extract any component CSS out into
+		// a separate file - better for performance
+		css({ output: 'app.[hash].css' }),
 
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
@@ -79,7 +85,13 @@ export default {
 			browser: true,
 			dedupe: ['svelte']
 		}),
+
 		commonjs(),
+
+		typescript({
+			sourceMap: !PROD,
+			inlineSources: !PROD
+		}),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
@@ -100,18 +112,22 @@ export default {
 };
 
 function serve() {
-	let started = false;
+	let server;
+
+	function toExit() {
+		if (server) server.kill(0);
+	}
 
 	return {
 		writeBundle() {
-			if (!started) {
-				started = true;
+			if (server) return;
+			server = require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
+				stdio: ['ignore', 'inherit', 'inherit'],
+				shell: true
+			});
 
-				require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
-					stdio: ['ignore', 'inherit', 'inherit'],
-					shell: true
-				});
-			}
+			process.on('SIGTERM', toExit);
+			process.on('exit', toExit);
 		}
 	};
 }
