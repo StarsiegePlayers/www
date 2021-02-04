@@ -1,6 +1,6 @@
 import fs from "fs";
 import posthtml from "posthtml";
-import { hash } from "posthtml-hash";
+import {hash} from "posthtml-hash";
 import htmlnano from "htmlnano";
 import rimraf from "rimraf";
 

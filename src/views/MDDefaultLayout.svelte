@@ -2,6 +2,7 @@
     import Icon from "fa-svelte";
     import {faEdit} from "@fortawesome/free-solid-svg-icons"
     import config from "../store/config";
+
     export let title;
     export let file;
 </script>

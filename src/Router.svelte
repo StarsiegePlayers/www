@@ -3,31 +3,15 @@
     import {link, Route, Router} from 'svelte-routing'
     import Navlink from './components/Navlink.svelte'
     import Navgroup from './components/Navgroup.svelte'
-    import Sidebar from './components/Sidebar.svelte'
+    import Page from './components/Page.svelte'
 
     // routes
     import Error404 from "./views/404.svelte";
     import config from "./store/routes"
 </script>
 
-<style>
-    #header-image {
-        height: 2.3rem;
-        width: 20rem;
-        object-fit: cover;
-    }
-</style>
-
-<Sidebar>
-    <span slot="sidebar-heading">
-        <a href={config.Logo.Link} use:link><img alt={config.Logo.Text} src={config.Logo.Image}/></a>
-    </span>
-
-    <span slot="top-right-content">
-        <a href={config.Discord.Invite} ><img alt={config.Discord.Text} id="header-image" src={config.Discord.Image}/></a>
-    </span>
-
-    <span slot="links">
+<Page>
+    <span slot="nav-links">
         <Router>
             {#each config.Routemap as route}
                 {#if typeof(route.group) === "string"}
@@ -57,4 +41,4 @@
             <Route component={Error404} path="*" />
         </Router>
     </span>
-</Sidebar>
+</Page>
