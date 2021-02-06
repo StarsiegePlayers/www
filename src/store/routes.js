@@ -16,6 +16,7 @@ import ServerStats from "../../content/Multiplayer/Stats.md"
 import ServerMap from "../../content/Multiplayer/Map.md"
 
 import News from "../../content/Community/News.md"
+import Calendar from "../../content/Community/Calendar.md"
 import Discord from "../../content/Community/Discord.md"
 import Speedrunning from "../../content/Community/Speedrunning.md"
 import Projects from "../../content/Community/Projects.md"
@@ -56,6 +57,7 @@ export default {
         {group: "Community",
             routes: [
                 {route: "/community", text: "News", component: News},
+                {route: "/community/calendar", text: "Calendar", component: Calendar},
                 {route: "/community/discord", text: "Discord", component: Discord},
                 {route: "/community/speedrunning", text: "Speed Running", component: Speedrunning},
                 {route: "/community/projects", text: "Projects", component: Projects},

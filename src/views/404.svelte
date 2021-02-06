@@ -2,7 +2,7 @@
     import {navigate} from 'svelte-routing';
 
     let count = 5;
-const interval = setInterval(update, 1000)
+    const interval = setInterval(update, 1000)
 
 function update() {
     if (count > 1) {

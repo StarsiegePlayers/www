@@ -13,13 +13,7 @@
 
 </script>
 
-<style>
-    :global(#left-nav span div a) {
-        padding-left: 40px;
-    }
-</style>
-
-<Link class="list-group-item list-group-item-action bg-dark text-yellow {isActive ? 'active' : ''} {extrapadding ? 'extra-padding' : ''}"
+<Link class="list-group-item bg-dark{isActive ? ' active' : ''}{extrapadding ? ' extra-padding' : ''}"
       getProps="{getProps}"
       to="{href}">{#if isActive}<Icon icon={faCaretRight} />{/if}<slot/>
 </Link>

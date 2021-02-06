@@ -1,0 +1,31 @@
+@import "variables";
+
+.list-group {
+  max-width: $left-nav-width;
+}
+div.list-group > a {
+  padding-left: 1.5rem;
+}
+
+.list-group-item {
+  max-width: $left-nav-width;
+  text-transform: uppercase;
+  color: $nav-group-item-color;
+  font-family: BankGothic, monospace;
+  &.active {
+    color: $nav-group-item-color;
+    background-color: $nav-group-item-link-active-bg;
+  }
+}
+
+a.list-group-item {
+  color: $nav-group-item-link-color;
+  &.active {
+    color: $nav-group-item-link-active;
+    background-color: $nav-group-item-link-active-bg;
+  }
+}
+
+.extra-padding {
+  margin: 0.5rem 0 0 0 !important;
+}

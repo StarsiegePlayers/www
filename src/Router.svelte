@@ -27,18 +27,16 @@
         </Router>
     </span>
 
-    <span slot="content">
-        <Router>
-            {#each config.Routemap as route}
-                {#if typeof(route.group) === "string"}
-                    {#each route.routes as groupRoute}
-                        <Route path={groupRoute.route} component={groupRoute.component} />
-                    {/each}
-                {:else}
-                    <Route path={route.route} component={route.component} />
-                {/if}
-            {/each}
-            <Route component={Error404} path="*" />
-        </Router>
-    </span>
+    <Router>
+        {#each config.Routemap as route}
+            {#if typeof(route.group) === "string"}
+                {#each route.routes as groupRoute}
+                    <Route path={groupRoute.route} component={groupRoute.component} />
+                {/each}
+            {:else}
+                <Route path={route.route} component={route.component} />
+            {/if}
+        {/each}
+        <Route component={Error404} path="*" />
+    </Router>
 </Page>

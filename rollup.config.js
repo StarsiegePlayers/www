@@ -1,13 +1,13 @@
+// main app and css processing
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
-import svelte from 'rollup-plugin-svelte';
+import copy from 'rollup-plugin-copy-watch';
+import postCSS from 'rollup-plugin-postcss';
 import livereload from 'rollup-plugin-livereload';
 import {terser} from 'rollup-plugin-terser';
-import copy from 'rollup-plugin-copy-watch';
-import css from 'rollup-plugin-css-only';
 import preprocess from 'svelte-preprocess';
-import prodbuild from "./prodbuild";
+import svelte from 'rollup-plugin-svelte';
 
 // MD Parsing and extensions
 import {mdsvex} from "mdsvex";
@@ -20,10 +20,19 @@ import rehype_slug from "rehype-slug";
 import rehype_meta from "rehype-meta"; //https://github.com/rehypejs/rehype-meta#config
 import rehype_meta_default from "./content/defaultMetaConfig";
 
+// special build configurations
+import prodbuild from "./prodbuild";
 const PROD = !process.env.ROLLUP_WATCH;
 const OUT_DIR = "public";
 const SOURCE_STATIC_DIR = "static";
 const SOURCE_DIR = "src";
+
+import dotenv from 'dotenv'
+import injectProcessEnv from 'rollup-plugin-inject-process-env';
+let envConfig = dotenv.config();
+envConfig.parsed.PROD_BUILD = PROD;
+
+console.log("Building:", (PROD ? "Production" : "Development"));
 
 export default {
 	input: `${SOURCE_DIR}/main.ts`,
@@ -74,7 +83,10 @@ export default {
 
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
-		css({ output: 'app.[hash].css' }),
+		postCSS({
+			extract: true,
+			sourceMap: !PROD,
+		}),
 
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
@@ -93,18 +105,26 @@ export default {
 			inlineSources: !PROD
 		}),
 
+		injectProcessEnv(envConfig.parsed, {
+			include: `**/${SOURCE_DIR}/store/config.js`,
+			verbose: true
+		}),
+
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
 		!PROD && serve(),
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
-		!PROD && livereload(OUT_DIR),
+		!PROD && livereload({
+			watch: [`${OUT_DIR}/static`],
+			verbose: true,
+		}),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
 		PROD && terser(),
-		PROD && prodbuild(),
+		PROD && prodbuild(OUT_DIR),
 	],
 	watch: {
 		clearScreen: false

@@ -18,33 +18,11 @@
 
 </script>
 
-<style>
-    :global(.list-group-item) {
-        text-transform: uppercase;
-        color: yellow;
-        font-family: BankGothic, monospace;
-    }
-    :global(.list-group-item-action.active) {
-        background-color: #484848 !important
-    }
-    :global(.list-group-item.active) {
-        font-weight: bold;
-        color: yellow;
-    }
-    :global(a.list-group-item.active) {
-        color: white;
-    }
-    :global(.extra-padding) {
-        margin: 0.5rem 0 0 0 !important;
-    }
-    .list-group-title {
-        font-weight: normal;
-    }
-</style>
-
-<p class="list-group-item list-group-title bg-dark text-yellow extra-padding"
+<p class="list-group-item list-group-title bg-dark extra-padding"
    class:active={active}
    on:click={() => active = !active}><Icon icon={active ? faAngleDown : faCaretRight}/> {name}</p>
 {#if active}
-<div class="list-group list-group-flush" id="navGroup{name}" transition:slide><slot /></div>
+<div class="list-group" transition:slide>
+    <slot />
+</div>
 {/if}

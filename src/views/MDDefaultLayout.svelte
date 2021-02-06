@@ -5,6 +5,7 @@
 
     export let title;
     export let file;
+    export let showEditLink = true;
 </script>
 
 <style>
@@ -15,7 +16,9 @@
 
 <div class="d-flex flex-wrap border-bottom">
     <div><h1>{title}</h1></div>
-    <div class="ms-auto align-self-end"><a href="{config.GitContentURL}/{file}">Edit me on GitHub!<span class="push-left"><Icon icon={faEdit}/></span></a></div>
+    {#if showEditLink}
+        <div class="ms-auto align-self-end"><a href="{config.GitContentURL}/tree/main/{file}" target="_blank">Edit me on GitHub!<span class="push-left"><Icon icon={faEdit}/></span></a></div>
+    {/if}
 </div>
 
 <div class="row">

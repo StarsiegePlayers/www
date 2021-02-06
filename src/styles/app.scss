@@ -2,6 +2,7 @@
 $app-font-dir: "./fonts";
 
 // base app overrides and fonts
+@import "app/variables";
 @import "app/fonts/fonts";
 @import "app/overrides";
 
@@ -21,3 +22,4 @@ $fa-font-path: '#{$app-font-dir}/FontAwesome';
 
 // discord widget things
 @import "discord/styles";
+@import "app/Navigation";
