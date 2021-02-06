@@ -1,9 +1,10 @@
 <!--suppress HtmlUnknownTarget -->
 <script>
-    import {link, Route, Router} from 'svelte-routing'
+    import {link} from 'svelte-routing'
     import PageContent from "./PageContent.svelte"
     import NavbarTop from "./NavbarTop.svelte"
     import config from "../store/config"
+
     let menuActive=false;
 </script>
 
@@ -11,15 +12,18 @@
     <div class="bg-primary" id="sidebar-wrapper">
         <a href={config.Logo.Link} use:link><img alt={config.Logo.Text} src={config.Logo.Image}/></a>
         <div class="list-group" id="left-nav">
-            <slot name="nav-links" />
+            <slot name="nav-links"/>
         </div>
     </div>
 
     <div id="page-content-wrapper">
         <NavbarTop bind:menuActive={menuActive}>
-            <a href={config.Discord.Invite} ><img alt={config.Discord.Text} id="header-image" src={config.Discord.Image}/></a>
+            <a href={config.Discord.Invite}><img alt={config.Discord.Text} id="header-image"
+                                                 src={config.Discord.Image}/></a>
         </NavbarTop>
-        <PageContent><slot /></PageContent>
+        <PageContent>
+            <slot/>
+        </PageContent>
     </div>
 </div>
 
@@ -49,11 +53,12 @@
   #sidebar-wrapper .list-group {
     width: $left-nav-width;
   }
+
   #wrapper.toggled #sidebar-wrapper {
     margin-left: 0;
   }
 
-  @include media-breakpoint-up(md)  {
+  @include media-breakpoint-up(md) {
     #sidebar-wrapper {
       margin-left: 0;
     }

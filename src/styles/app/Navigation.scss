@@ -3,6 +3,7 @@
 .list-group {
   max-width: $left-nav-width;
 }
+
 div.list-group > a {
   padding-left: 1.5rem;
 }
@@ -12,6 +13,7 @@ div.list-group > a {
   text-transform: uppercase;
   color: $nav-group-item-color;
   font-family: BankGothic, monospace;
+
   &.active {
     color: $nav-group-item-color;
     background-color: $nav-group-item-link-active-bg;
@@ -20,6 +22,7 @@ div.list-group > a {
 
 a.list-group-item {
   color: $nav-group-item-link-color;
+
   &.active {
     color: $nav-group-item-link-active;
     background-color: $nav-group-item-link-active-bg;

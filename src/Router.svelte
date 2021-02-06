@@ -1,6 +1,6 @@
 <!--suppress HtmlUnknownTarget -->
 <script>
-    import {link, Route, Router} from 'svelte-routing'
+    import {Route, Router} from 'svelte-routing'
     import Navlink from './components/Navlink.svelte'
     import Navgroup from './components/Navgroup.svelte'
     import Page from './components/Page.svelte'
@@ -29,14 +29,14 @@
 
     <Router>
         {#each config.Routemap as route}
-            {#if typeof(route.group) === "string"}
+            {#if typeof (route.group) === "string"}
                 {#each route.routes as groupRoute}
-                    <Route path={groupRoute.route} component={groupRoute.component} />
+                    <Route path={groupRoute.route} component={groupRoute.component}/>
                 {/each}
             {:else}
-                <Route path={route.route} component={route.component} />
+                <Route path={route.route} component={route.component}/>
             {/if}
         {/each}
-        <Route component={Error404} path="*" />
+        <Route component={Error404} path="*"/>
     </Router>
 </Page>

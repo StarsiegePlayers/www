@@ -23,14 +23,14 @@
     /** @type {import('@fullcalendar/common').CalendarOptions}  */
     let options = {
         schedulerLicenseKey: config.Calendar.LicenseKey,
-        plugins: [ adaptivePlugin, bootstrapPlugin, dayGridPlugin, googleCalendarPlugin, interactionPlugin, listPlugin, timeGridPlugin ],
+        plugins: [adaptivePlugin, bootstrapPlugin, dayGridPlugin, googleCalendarPlugin, interactionPlugin, listPlugin, timeGridPlugin],
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
         },
-        dateClick: function(info) {
-          console.log(info);
+        dateClick: function (info) {
+            console.log(info);
         },
 
         initialView: 'dayGridMonth',
@@ -42,7 +42,7 @@
         nowIndicator: true,
         dayMaxEvents: true, // allow "more" link when too many events
 
-        eventSources: (function() {
+        eventSources: (function () {
             let output = [];
             for (let k in config.Calendar.Events) {
                 output[k] = {
@@ -52,7 +52,7 @@
             }
             return output;
         })(),
-        eventClick: function(arg) {
+        eventClick: function (arg) {
             // opens events in a popup window
             window.open(arg.event.url, 'google-calendar-event', 'width=800,height=600');
 
@@ -71,29 +71,29 @@
     };
 </script>
 
-<style lang="scss" global>
-    @import "../styles/app/_variables.scss";
+<style global lang="scss">
+  @import "../styles/app/_variables.scss";
 
-    .fc {
-      margin-top: 1.5rem !important;
-    }
+  .fc {
+    margin-top: 1.5rem !important;
+  }
 
-    .fc .fc-toolbar.fc-header-toolbar {
-      margin-bottom: 1.5rem !important;
-    }
+  .fc .fc-toolbar.fc-header-toolbar {
+    margin-bottom: 1.5rem !important;
+  }
 
-    .fc-day-disabled {
-      background: transparent !important;
-    }
+  .fc-day-disabled {
+    background: transparent !important;
+  }
 
-    .fc td {
-      border: 1px solid $border-color;
-    }
+  .fc td {
+    border: 1px solid $border-color;
+  }
 
-    .hidden {
-      //visibility: hidden;
-      display: none;
-    }
+  .hidden {
+    //visibility: hidden;
+    display: none;
+  }
 </style>
 
 <div class="row">

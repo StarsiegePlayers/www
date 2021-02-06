@@ -22,13 +22,14 @@ import rehype_meta_default from "./content/defaultMetaConfig";
 
 // special build configurations
 import prodbuild from "./prodbuild";
+import dotenv from 'dotenv'
+import injectProcessEnv from 'rollup-plugin-inject-process-env';
+
 const PROD = !process.env.ROLLUP_WATCH;
 const OUT_DIR = "public";
 const SOURCE_STATIC_DIR = "static";
 const SOURCE_DIR = "src";
 
-import dotenv from 'dotenv'
-import injectProcessEnv from 'rollup-plugin-inject-process-env';
 let envConfig = dotenv.config();
 envConfig.parsed.PROD_BUILD = PROD;
 
@@ -75,7 +76,7 @@ export default {
 					],
 					rehypePlugins: [
 						rehype_slug,
-						[rehype_meta, rehype_meta_default ]
+						[rehype_meta, rehype_meta_default]
 					]
 				})
 			],

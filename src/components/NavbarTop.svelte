@@ -4,16 +4,19 @@
 
 <style lang="scss">
     @import "../styles/app/variables";
+
     #top-nav {
-        border-bottom-color: $border-color;
+      border-bottom-color: $border-color;
     }
+
     .navbar {
       padding: 0 0.5rem;
     }
+
     @media print {
-        #top-nav {
-            display: none;
-        }
+      #top-nav {
+        display: none;
+      }
     }
 </style>
 

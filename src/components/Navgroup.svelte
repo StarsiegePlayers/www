@@ -20,9 +20,10 @@
 
 <p class="list-group-item list-group-title bg-dark extra-padding"
    class:active={active}
-   on:click={() => active = !active}><Icon icon={active ? faAngleDown : faCaretRight}/> {name}</p>
+   on:click={() => active = !active}>
+    <Icon icon={active ? faAngleDown : faCaretRight}/> {name}</p>
 {#if active}
-<div class="list-group" transition:slide>
-    <slot />
-</div>
+    <div class="list-group" transition:slide>
+        <slot/>
+    </div>
 {/if}

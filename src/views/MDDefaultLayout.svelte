@@ -17,7 +17,8 @@
 <div class="d-flex flex-wrap border-bottom">
     <div><h1>{title}</h1></div>
     {#if showEditLink}
-        <div class="ms-auto align-self-end"><a href="{config.GitContentURL}/tree/main/{file}" target="_blank">Edit me on GitHub!<span class="push-left"><Icon icon={faEdit}/></span></a></div>
+        <div class="ms-auto align-self-end"><a href="{config.GitContentURL}/tree/main/{file}" target="_blank">Edit me on
+            GitHub!<span class="push-left"><Icon icon={faEdit}/></span></a></div>
     {/if}
 </div>
 

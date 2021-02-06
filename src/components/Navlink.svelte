@@ -15,5 +15,9 @@
 
 <Link class="list-group-item bg-dark{isActive ? ' active' : ''}{extrapadding ? ' extra-padding' : ''}"
       getProps="{getProps}"
-      to="{href}">{#if isActive}<Icon icon={faCaretRight} />{/if}<slot/>
+      to="{href}">
+    {#if isActive}
+        <Icon icon={faCaretRight}/>
+    {/if}
+    <slot/>
 </Link>
