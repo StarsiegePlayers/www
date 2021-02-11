@@ -14,12 +14,12 @@ export default {
         Events: [
             {
                 Name: "Matchmaking Events",
-                APIKey: (!process.env.PROD_BUILD ? process.env.CALENDAR_API_KEY_1 : ''),
+                APIKey: (!process.env.PROD_BUILD ? process.env.CALENDAR_API_KEY_1 : process.env.CALENDAR_PROD_KEY_1),
                 CalendarID: "qve8pvha1fs8oiinq633nbe57o@group.calendar.google.com"
             },
             {
                 Name: "Community Birthdays",
-                APIKey: (!process.env.PROD_BUILD ? process.env.CALENDAR_API_KEY_2 : ''),
+                APIKey: (!process.env.PROD_BUILD ? process.env.CALENDAR_API_KEY_2 : process.env.CALENDAR_PROD_KEY_2),
                 CalendarID: "rfpk5nqji86bic4e635jcntouo@group.calendar.google.com"
             }
         ],
