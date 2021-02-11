@@ -55,24 +55,24 @@ export default {
             },
             {
                 Title: "Angel-A finished broadcasting on Twitch.tv",
-                Image: "https://i.pravatar.cc/50?img=2",
+                Image: "https://i.pravatar.cc/50?img=9",
                 Link: "http://example.com/",
                 Timestamp: nowMinus(2)
             },
             {
                 Title: "Drake wrote an article on the project hard-lockup-computer",
-                Image: "https://i.pravatar.cc/50?img=3",
+                Image: "https://i.pravatar.cc/50?img=4",
                 Link: "http://example.com/",
                 Timestamp: nowMinus(3)
             },
             {
                 Title: "Angel-A started broadcasting LIVE on Twitch.tv",
-                Image: "https://i.pravatar.cc/50?img=2",
+                Image: "https://i.pravatar.cc/50?img=9",
                 Link: "http://example.com/",
                 Timestamp: nowMinus(4)
             },
             {
-                Title: "Jenatrix released version 420.69.1 of starsiege-installer",
+                Title: "Jenetrix released version 420.69.1 of starsiege-installer",
                 Image: "https://i.pravatar.cc/50?img=5",
                 Link: "http://example.com/",
                 Timestamp: nowMinus(5)

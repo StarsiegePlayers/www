@@ -35,7 +35,6 @@ export default {
         {route: "/download", text: "Download Starsiege", component: Download, extrapadding: true },
         {group: "Getting Started",
             routes: [
-                {route: "/download", text: "Download", component: Download },
                 {route: "/intro", text: "Frequently Asked Questions", component: FAQ},
                 {route: "/intro/help", text: "Help", component: Help},
             ]

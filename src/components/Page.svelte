@@ -58,7 +58,7 @@
     margin-left: 0;
   }
 
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(lg) {
     #sidebar-wrapper {
       margin-left: 0;
     }

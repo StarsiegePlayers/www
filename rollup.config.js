@@ -108,7 +108,7 @@ export default {
 
 		injectProcessEnv(envConfig.parsed, {
 			include: `**/${SOURCE_DIR}/store/config.js`,
-			verbose: true
+			verbose: !PROD
 		}),
 
 		// In dev mode, call `npm run start` once

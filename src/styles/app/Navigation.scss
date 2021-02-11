@@ -18,6 +18,10 @@ div.list-group > a {
     color: $nav-group-item-color;
     background-color: $nav-group-item-link-active-bg;
   }
+  &:hover {
+    cursor: pointer;
+    background-color: $nav-group-item-hover-bg !important;
+  }
 }
 
 a.list-group-item {
@@ -26,6 +30,10 @@ a.list-group-item {
   &.active {
     color: $nav-group-item-link-active;
     background-color: $nav-group-item-link-active-bg;
+  }
+
+  &:hover {
+    cursor: pointer;
   }
 }
 

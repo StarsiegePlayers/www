@@ -6,7 +6,7 @@ export default {
         [
             {
                 Title: "Server Browser",
-                Link: "/servers",
+                Link: "/multiplayer",
                 Image: "/static/img/serverbrowser.png",
                 Description: "Play on Community servers"
             },
