@@ -1,7 +1,7 @@
 <script>
     import {Link} from "svelte-routing";
     import Icon from 'fa-svelte';
-    import {faCaretRight} from '@fortawesome/free-solid-svg-icons';
+    import {faCaretRight, faCaretLeft} from '@fortawesome/free-solid-svg-icons';
 
     export let href = "";
     export let isActive = false
@@ -13,9 +13,10 @@
 
 </script>
 
-<Link class="list-group-item bg-dark{isActive ? ' active' : ''}{extrapadding ? ' extra-padding' : ''}"
+<Link class="list-group-item{isActive ? ' active' : ''}{extrapadding ? ' extra-padding' : ''}"
       getProps="{getProps}"
       to="{href}">
-    {#if isActive}<Icon icon={faCaretRight}/>{/if}
+    {#if isActive}<span><Icon icon={faCaretRight}/></span>{/if}
     <slot/>
+    {#if isActive}<span><Icon icon={faCaretLeft}/></span>{/if}
 </Link>

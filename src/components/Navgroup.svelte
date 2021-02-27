@@ -18,10 +18,12 @@
 
 </script>
 
-<p class="list-group-item list-group-title bg-dark extra-padding"
+<p class="list-group-item list-group-title extra-padding"
    class:active={active}
    on:click={() => active = !active}>
-    <Icon icon={active ? faAngleDown : faCaretRight}/> {name}</p>
+    <span class="carrot-left"><Icon icon={active ? faAngleDown : faCaretRight}/></span>
+    {name}
+</p>
 {#if active}
     <div class="list-group" transition:slide>
         <slot/>

@@ -1,26 +1,38 @@
 @import "variables";
 
+$app-img-dir: "./img" !default;
+
 .list-group {
   max-width: $left-nav-width;
 }
 
-div.list-group > a {
-  padding-left: 1.5rem;
-}
-
 .list-group-item {
+  margin-top: 0.02rem !important;
+  text-align: center !important;
   max-width: $left-nav-width;
   text-transform: uppercase;
   color: $nav-group-item-color;
+  border: none !important;
   font-family: BankGothic, monospace;
+  background: url('#{$app-img-dir}/btn-left.png') left top / auto 100% no-repeat,
+              url('#{$app-img-dir}/btn-right.png') right top / auto 100% no-repeat,
+              url('#{$app-img-dir}/btn-center.png') left 1rem top / ($left-nav-width - 2rem) 100% no-repeat;
 
   &.active {
     color: $nav-group-item-color;
-    background-color: $nav-group-item-link-active-bg;
+    //background-color: $nav-group-item-link-active-bg;
   }
   &:hover {
-    cursor: pointer;
-    background-color: $nav-group-item-hover-bg !important;
+    cursor: default;
+    //background-color: $nav-group-item-hover-bg !important;
+  }
+  & span:nth-child(odd) {
+    position: absolute;
+    left: 1rem;
+  }
+  & span:nth-child(even) {
+    position: absolute;
+    right: 1rem;
   }
 }
 
@@ -29,7 +41,7 @@ a.list-group-item {
 
   &.active {
     color: $nav-group-item-link-active;
-    background-color: $nav-group-item-link-active-bg;
+    //background-color: $nav-group-item-link-active-bg;
   }
 
   &:hover {

@@ -11,7 +11,7 @@ import Missions from "../../content/Campaign/Missions.md"
 import MissionStats from "../../content/Campaign/Stats.md"
 import Terrain from "../../content/Campaign/Terrain.md"
 
-import Servers from "../../content/Multiplayer/Servers.md"
+import Servers from "../views/ServerBrowser.svelte"
 import ServerStats from "../../content/Multiplayer/Stats.md"
 import ServerMap from "../../content/Multiplayer/Map.md"
 
@@ -32,36 +32,36 @@ export default {
     Discord: config.Discord,
     Routemap: [
         {route: "/", text: "Home", component: Home},
-        {route: "/download", text: "Download Starsiege", component: Download, extrapadding: true },
+        {route: "/download", text: "Play Starsiege", component: Download, extrapadding: true },
         {group: "Getting Started",
             routes: [
-                {route: "/intro", text: "Frequently Asked Questions", component: FAQ},
+                {route: "/intro", text: "F.A.Q.", component: FAQ},
                 {route: "/intro/help", text: "Help", component: Help},
             ]
         },
         {group: "Campaign",
             routes: [
                 {route: "/campaign", text: "Mission Browser", component: Missions},
-                {route: "/campaign/stats", text: "Mission Statistics", component: MissionStats},
+                {route: "/campaign/stats", text: "Mission Stats", component: MissionStats},
                 {route: "/campaign/terrain", text: "Terrains", component: Terrain},
             ]
         },
         {group: "Multiplayer",
             routes: [
                 {route: "/multiplayer", text: "Server Browser", component: Servers},
-                {route: "/multiplayer/stats", text: "Statistics", component: ServerStats},
+                {route: "/multiplayer/stats", text: "Server Stats", component: ServerStats},
                 {route: "/multiplayer/map", text: "World Map", component: ServerMap},
             ]
         },
         {group: "Community",
             routes: [
                 {route: "/community", text: "News", component: News},
-                {route: "/community/calendar", text: "Calendar", component: Calendar},
                 {route: "/community/discord", text: "Discord", component: Discord},
+                {route: "/community/calendar", text: "Calendar", component: Calendar},
                 {route: "/community/speedrunning", text: "Speed Running", component: Speedrunning},
                 {route: "/community/projects", text: "Projects", component: Projects},
+                {route: "/community/links", text: "Webring", component: Links},
                 {route: "/community/files", text: "Files", component: Files},
-                {route: "/community/links", text: "Community At Large", component: Links},
             ]
         },
         {group: "History",
