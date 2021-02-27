@@ -1,4 +1,5 @@
 @import "fonts";
+@import "tooltip";
 
 /* This would replace the iframe, so we reset most styles to do with box sizing, positioning, and text. */
 /* I reduced it from a huge element list to a an ALL(*) selector because it mainly does the same thing, */
@@ -19,12 +20,11 @@ div.discord-widget * {
 .discord-widget-container a img {
     border: none;
 }
+
 .discord-widget-container {
     background-color: transparent;
     line-height: 1;
-    height: 400px;
-    width: 280px;
-    margin-right: 10px;
+    height: 26.25rem;
     contain: content;
 }
 
@@ -169,36 +169,6 @@ div.discord-widget * {
     align-items: center;
     flex: 0;
     margin: 6px 0;
-}
-
-.discord-widget .widget-member .widget-member-name {
-    border-radius: 16px;
-    display: none;
-    font-weight: bold;
-    height: 32px;
-    max-width: 160px;
-    overflow: hidden;
-    line-height: 32px;
-    padding: 0 8px 0 37px;
-    pointer-events: none;
-    position: absolute;
-    text-overflow: ellipsis;
-    top: 0;
-    user-select: none;
-    white-space: nowrap;
-    z-index: 1;
-}
-
-.discord-widget .widget-member:hover .widget-member-name {
-    display: block;
-}
-
-/* Float member names to the left when they're on the right side */
-.discord-widget:not(.resolved-columns) .widget-member:nth-child(7n) .widget-member-name,
-.discord-widget:not(.resolved-columns) .widget-member:nth-child(7n-2) .widget-member-name,
-.discord-widget:not(.resolved-columns) .widget-member:nth-child(7n-1) .widget-member-name {
-    padding: 0 32px 0 8px;
-    right: 4px;
 }
 
 .discord-widget .widget-member-avatar {
@@ -387,11 +357,6 @@ div.discord-widget * {
 
 .discord-widget .widget-role-name {
     color: #8a8e94;
-}
-
-.discord-widget .widget-member .widget-member-name {
-    background-color: #7289da;
-    color: #fff;
 }
 
 .discord-widget .widget-member-avatar img {

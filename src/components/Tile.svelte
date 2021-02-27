@@ -23,9 +23,9 @@
         text-align: right;
         cursor: pointer;
         display: block;
-        height: 200px;
+        height: 12.5rem;
         border: 0.18rem solid #003977;
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem;
         background-position: right;
         background-repeat: no-repeat;
         -webkit-background-size: cover;

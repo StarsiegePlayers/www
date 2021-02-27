@@ -2,6 +2,7 @@
 <script>
     import Icon from 'fa-svelte'
     import {faCog} from '@fortawesome/free-solid-svg-icons'
+    import WidgetMember from './WidgetMember.svelte'
 
     export let guildID;
     export let invite = "";
@@ -14,7 +15,7 @@
     const apiURL = "https://discord.com/api/guilds/" + guildID + "/widget.json";
     let loadedCount = 0;
     let promise = async function() {
-        const response = await fetch(apiURL);
+        const response = await fetch(apiURL, {cache: "no-store"});
         return await response.json();
     }();
 </script>
@@ -64,18 +65,7 @@
                     <div data-name="{users}" data-default="true" class="widget-role-name">{users}</div>
                     <div data-name="{memberName}" class="widget-role-container">
                         {#each discordData.members as user}
-                            <div class="widget-member">
-                                <div class="widget-member-avatar">
-                                    <img alt="{user.username}'s Avatar" src={user.avatar_url} loading="lazy" class="widget-member-avatar-img">
-                                    <span class="widget-member-status"
-                                          class:widget-member-status-online={user.status === "online"}
-                                          class:widget-member-status-dnd={user.status === "dnd"}
-                                          class:widget-member-status-idle={user.status === "idle"}
-                                          class:widget-member-status-offline={user.status === "offline"}
-                                    ></span>
-                                </div>
-                                <span class="widget-member-name">{user.username}</span>
-                            </div>
+                            <WidgetMember user={user} />
                         {/each}
                     </div>
                 </div>

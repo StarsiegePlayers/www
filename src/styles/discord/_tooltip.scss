@@ -1,0 +1,95 @@
+@import "../../../node_modules/bootstrap/scss/mixins";
+
+.discord-widget .widget-member .widget-member-name {
+  background-color: #7289da;
+  color: #fff;
+  border-radius: 16px;
+  display: none;
+  font-weight: bold;
+  height: 32px;
+  max-width: 160px;
+  line-height: 32px;
+  padding: 0 8px 0 37px;
+  pointer-events: none;
+  position: absolute;
+  text-overflow: ellipsis;
+  top: 0;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.discord-widget .widget-member:hover .widget-member-name {
+  display: block;
+}
+
+// janky hacks ahead - css3 doesn't have a selector for flexbox rows, yet
+// so the only other way to do select the last three elements in a flexbox row
+// is by adding a post-mount introspective javascript hook.
+// and frankly, why do something in javascript when you can do it in sass?
+
+/* Float member names to the left when they're on the right side */
+@mixin tooltip-left($length) {
+  .widget-member:nth-child(#{$length}n) .widget-member-name,
+  .widget-member:nth-child(#{$length}n-2) .widget-member-name,
+  .widget-member:nth-child(#{$length}n-1) .widget-member-name {
+    padding: 0 32px 0 8px;
+    right: 4px;
+  }
+}
+
+@mixin tooltip-left-between($length, $min, $max) {
+  @media (min-width: $min) and (max-width: $max) {
+    @include tooltip-left($length);
+  }
+}
+
+// "wide" screen
+@media (min-width: 993px) {
+  // 9 from boostrap lg and above
+  @include tooltip-left(9);
+}
+
+@include tooltip-left-between(7, 998px, 992px);
+
+@include tooltip-left-between(5, 768px, 988px);
+
+// single column
+// 13 from 576 to bootstrap lg
+@include tooltip-left-between(13, 576px, 767px);
+
+// 14 from 575 - 556
+@include tooltip-left-between(14, 556px, 575px);
+
+// 13 from 555 - 520
+@include tooltip-left-between(13, 520px, 555px);
+
+// 12 from 519 - 484
+@include tooltip-left-between(12, 484px, 519px);
+
+// 11 from 483 - 448
+@include tooltip-left-between(11, 448px, 483px);
+
+// 10 from 447 - 412
+@include tooltip-left-between(10, 412px, 447px);
+
+//  9 from 411 - 376
+@include tooltip-left-between(9, 376px, 411px);
+
+//  8 from 375 - 340
+@include tooltip-left-between(8, 340px, 375px);
+
+//  3 from 339 - 304
+@include tooltip-left-between(7, 304px, 339px);
+
+//  6 from 303 - 268
+@include tooltip-left-between(6, 268px, 303px);
+
+//  5 from 267 - 232
+@include tooltip-left-between(5, 232px, 267px);
+
+//  4 from 231 - 196
+//  3 from 195 - 160
+//  2 from 159 - 124
+//  1 from 124
+

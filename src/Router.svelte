@@ -11,7 +11,7 @@
 </script>
 
 <Page>
-    <span slot="nav-links">
+    <slot slot="nav-links">
         <Router>
             {#each config.Routemap as route}
                 {#if typeof(route.group) === "string"}
@@ -25,7 +25,7 @@
                 {/if}
             {/each}
         </Router>
-    </span>
+    </slot>
 
     <Router>
         {#each config.Routemap as route}
