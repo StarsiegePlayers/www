@@ -2,7 +2,7 @@
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
-import copy from 'rollup-plugin-copy-watch';
+import copy from 'rollup-plugin-copy';
 import postCSS from 'rollup-plugin-postcss';
 import livereload from 'rollup-plugin-livereload';
 import {terser} from 'rollup-plugin-terser';
@@ -45,9 +45,8 @@ export default {
 	},
 	plugins: [
 		copy({
-			watch: SOURCE_STATIC_DIR,
 			targets: [
-				{ src: SOURCE_STATIC_DIR, dest: `${OUT_DIR}/` },
+				{ src: [SOURCE_STATIC_DIR, '!index.html'], dest: `${OUT_DIR}/` },
 				{ src: `${SOURCE_STATIC_DIR}/index.html`, dest: `${OUT_DIR}/` }
 			],
 			verbose: true
@@ -107,8 +106,7 @@ export default {
 		}),
 
 		injectProcessEnv(envConfig.parsed, {
-			include: `**/${SOURCE_DIR}/store/config.js`,
-			verbose: !PROD
+			include: `**/${SOURCE_DIR}/store/config.js`
 		}),
 
 		// In dev mode, call `npm run start` once
