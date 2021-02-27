@@ -1,0 +1,46 @@
+@import "variables";
+
+$app-img-dir: "./img" !default;
+$app-img-sb-dir: "#{$app-img-dir}/server_browser" !default;
+
+.sb {
+  font-family: serif;
+  color: rgba(0, 0, 0, 0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  max-height: 10px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+}
+
+// todo: make these a sprite sheet
+.sb-protected:before {
+  @extend .sb;
+  content: "Password";
+  width: 10px;
+  background: url('#{$app-img-sb-dir}/passwd.png') left top / 100% 100% no-repeat;
+}
+
+.sb-dedicated:before {
+  @extend .sb;
+  width: 15px;
+  content: "Dedicated";
+  background: url('#{$app-img-sb-dir}/dedi.png') left top / 100% 100% no-repeat;
+}
+
+.sb-dynamix:before {
+  @extend .sb;
+  width: 38px;
+  content: "Dynamix";
+  background: url('#{$app-img-sb-dir}/dyn.png') left top / 100% 100% no-repeat;
+}
+
+.sb-won:before {
+  @extend .sb;
+  width: 27px;
+  content: "WON";
+  background: url('#{$app-img-sb-dir}/won.png') left top / 100% 100% no-repeat;
+}

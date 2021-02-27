@@ -1,49 +1,89 @@
 <script>
-    import * as info from "../store/server_browser";
+    import info from "../store/server_browser";
+    export const LastUpdated = info.RequestTime;
 </script>
 
 <style>
-
+    .row {
+        margin-bottom: 1.5rem;
+    }
 </style>
 
+{#if info.Masters.length <= 0 && info.Games.length <= 0 && info.Errors.Length <= 0}
 <div class="row">
-    <h2>Master Server Info</h2>
+    <h2>Server Browser Unavailable</h2>
+</div>
+{/if}
+
+{#if info.Masters.length > 0}
+<div class="row justify-content-center">
+    <h5 class="text-center">Master Servers</h5>
     <table cellspacing="0">
         <tr>
             <th class="header">No.</th>
-            <th class="header">server</th>
-            <th class="header">motd</th>
-            <th class="header">server_count</th>
-            <th class="header">ping</th>
+            <th class="header">Hostname</th>
+            <th class="header">Server Name</th>
+            <th class="header">MOTD</th>
+            <th class="header">Reported Games</th>
+            <th class="header">Ping</th>
         </tr>
+        {#each info.Masters as master, i}
         <tr>
-            <td class="server start">1</td>
-            <td class="server">master1.starsiege.io:29000</td>
-            <td class="server">join the starsiege discord
-                at discord.gg\m5ujbpv</td>
-            <td class="server">22</td>
-            <td class="server end">10</td>
+            <td class="server start">{i+1}</td>
+            <td class="server">{master.Address}</td>
+            <td class="server">{master.CommonName}</td>
+            <td class="server">{master.MOTD}</td>
+            <td class="server">{master.ServerCount}</td>
+            <td class="server end">{Math.floor(master.Ping / 1000000)} ms</td>
         </tr>
+        {/each}
     </table>
 </div>
-<div class="row">
-    <h2>Game Server Info</h2>
+{/if}
+
+{#if info.Games.length > 0}
+<div class="row justify-content-center">
+    <h5 class="text-center">Game Servers</h5>
     <table cellspacing="0">
         <tr>
             <th class="header">No.</th>
             <th class="header">Server Name</th>
             <th class="header">Started</th>
+            <th class="header">Legacy Clients</th>
             <th class="header">Players</th>
             <th class="header">Ping</th>
             <th class="header">Server Address</th>
         </tr>
+        {#each info.Games as game, i}
         <tr>
-            <td class="server start">1</td>
-            <td class="server"><img src="./imgs/dedi.png" alt="D"> <img src="./imgs/won.png" alt="W"> Tag Without Targ</td>
-            <td class="server">no</td>
-            <td class="server">0 / 64</td>
-            <td class="server">57</td>
-            <td class="server end">96.126.117.157:29007</td>
+            <td class="server start">{i+1}</td>
+            <td class="server">
+                {#if game.GameStatus.Protected}<span class="sb-protected"></span>{/if}
+                {#if game.GameStatus.Dedicated}<span class="sb-dedicated"></span>{/if}
+                {#if game.GameStatus.Dynamix}<span class="sb-dynamix"></span>{/if}
+                {#if game.GameStatus.WON}<span class="sb-won"></span>{/if}
+                {game.Name}
+            </td>
+            <td class="server">{game.GameStatus.Started ? "yes" : "no"}</td>
+            <td class="server">{game.GameStatus.AllowOldClients ? "yes" : "no"}</td>
+            <td class="server">{game.PlayerCount} / {game.MaxPlayers}</td>
+            <td class="server">{Math.floor(game.Ping / 1000000)} ms</td>
+            <td class="server end"><a href="starsiege://{game.Address}">{game.Address}</a></td>
         </tr>
+        {/each}
     </table>
 </div>
+{/if}
+<hr />
+{#if info.Errors.length > 0}
+<div class="row justify-content-center">
+    <h5 class="text-center">Errors Encountered</h5>
+    <div class="row">
+        <table cellspacing="0">
+            {#each info.Errors as error}
+            <tr><td>{error}</td></tr>
+            {/each}
+        </table>
+    </div>
+</div>
+{/if}
