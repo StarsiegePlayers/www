@@ -9,9 +9,13 @@
 Install the dependencies
 
 ```bash
+git clone https://github.com/StarsiegePlayers/www.git StarsiegePlayers/www && cd StarsiegePlayers/www
 npm install
+git clone https://github.com/StarsiegePlayers/www-site-content.git content
 ```
-__
+
+___
+
 Start the development server
 
 ```bash
