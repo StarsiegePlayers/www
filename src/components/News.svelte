@@ -2,7 +2,7 @@
     import {timeago} from "./timeago"
     import config from "../store/config"
 
-    export let limit = 10
+    export let limit = 20
     export let header = "Community News"
 
 </script>
