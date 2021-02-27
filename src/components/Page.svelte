@@ -10,7 +10,9 @@
 
 <div class="d-flex" id="wrapper" class:toggled={menuActive}>
     <div class="bg-primary" id="sidebar-wrapper">
-        <a href={config.Logo.Link} use:link><img alt={config.Logo.Text} src={config.Logo.Image}/></a>
+        <a href={config.Logo.Link} use:link>
+            <img class="img-fluid" alt={config.Logo.Text} src={config.Logo.Image}/>
+        </a>
         <div class="list-group" id="left-nav">
             <slot name="nav-links"/>
         </div>
@@ -18,12 +20,12 @@
 
     <div id="page-content-wrapper">
         <NavbarTop bind:menuActive={menuActive}>
-            <a href={config.Discord.Invite}><img alt={config.Discord.Text} id="header-image"
-                                                 src={config.Discord.Image}/></a>
+            <a href={config.Discord.Invite}>
+                <img class="img-fluid" alt={config.Discord.Text} id="header-image" src={config.Discord.Image}/>
+            </a>
         </NavbarTop>
-        <PageContent>
-            <slot/>
-        </PageContent>
+        <div class="modal"></div>
+        <PageContent bind:menuActive={menuActive}><slot/></PageContent>
     </div>
 </div>
 
