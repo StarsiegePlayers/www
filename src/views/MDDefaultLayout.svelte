@@ -7,7 +7,7 @@
     export let title;
     export let file;
     export let showEditLink = true;
-    export let LastUpdated = 0;
+    export let LastUpdated = undefined;
 </script>
 
 <style>
@@ -22,7 +22,7 @@
         <div class="ms-auto align-self-end"><a href="{config.GitContentURL}/tree/main/{file}" target="_blank">Edit me on
             GitHub!<span class="push-left"><Icon icon={faEdit}/></span></a></div>
     {/if}
-    {#if !showEditLink && LastUpdated > 0}
+    {#if !showEditLink && LastUpdated !== undefined}
         <div class="ms-auto align-self-end">Last Updated: <i use:timeago datetime="{LastUpdated}" locale="en_US">{LastUpdated}</i></div>
     {/if}
 </div>

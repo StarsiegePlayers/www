@@ -1,6 +1,15 @@
 <script>
-    import info from "../store/server_browser";
-    export const LastUpdated = info.RequestTime;
+    import http from "../store/http";
+    const defaultData = {
+        "RequestTime": "",
+        "Masters": [],
+        "Games": [],
+        "Errors": [],
+    };
+    const info = http(defaultData);
+    info.get("/api/v1/multiplayer/servers");
+
+    export const ServerInfo = info;
 </script>
 
 <style>
@@ -9,13 +18,13 @@
     }
 </style>
 
-{#if info.Masters.length <= 0 && info.Games.length <= 0 && info.Errors.Length <= 0}
+{#if $info.Masters.length <= 0 && $info.Games.length <= 0 && $info.Errors.Length <= 0}
 <div class="row">
     <h2>Server Browser Unavailable</h2>
 </div>
 {/if}
 
-{#if info.Masters.length > 0}
+{#if $info.Masters.length > 0}
 <div class="row justify-content-center">
     <h5 class="text-center">Master Servers</h5>
     <table cellspacing="0">
@@ -27,7 +36,7 @@
             <th class="header">Reported Games</th>
             <th class="header">Ping</th>
         </tr>
-        {#each info.Masters as master, i}
+        {#each $info.Masters as master, i}
         <tr>
             <td class="server start">{i+1}</td>
             <td class="server">{master.Address}</td>
@@ -41,7 +50,7 @@
 </div>
 {/if}
 
-{#if info.Games.length > 0}
+{#if $info.Games.length > 0}
 <div class="row justify-content-center">
     <h5 class="text-center">Game Servers</h5>
     <table cellspacing="0">
@@ -54,7 +63,7 @@
             <th class="header">Ping</th>
             <th class="header">Server Address</th>
         </tr>
-        {#each info.Games as game, i}
+        {#each $info.Games as game, i}
         <tr>
             <td class="server start">{i+1}</td>
             <td class="server">
@@ -75,12 +84,12 @@
 </div>
 {/if}
 <hr />
-{#if info.Errors.length > 0}
+{#if $info.Errors.length > 0}
 <div class="row justify-content-center">
     <h5 class="text-center">Errors Encountered</h5>
     <div class="row">
         <table cellspacing="0">
-            {#each info.Errors as error}
+            {#each $info.Errors as error}
             <tr><td>{error}</td></tr>
             {/each}
         </table>

@@ -28,7 +28,7 @@ export default {
 
     Logo: {
         Text: "Starsiege Players Logo",
-        Image: "https://via.placeholder.com/240x100.png?text=240x100",
+        Image: "/static/img/leftlogo.png",
         Link: "/"
     },
 
