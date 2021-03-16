@@ -1,0 +1,19 @@
+// table addons to bootstrap
+
+$starsiege-table-blue: transparentize($starsiege-blue, 0.5);
+$starsiege-table-yellow: transparentize($starsiege-yellow, 0.5);
+
+@include table-variant("ss-blue", $starsiege-table-blue);
+.table-ss-blue {
+  background-color: $starsiege-table-blue;
+  color: $starsiege-text-yellow;
+  &>tr:not(:first-of-type):hover {
+    color: lighten($starsiege-text-yellow, 25%)
+  }
+}
+
+@include table-variant("ss-yellow", $starsiege-table-yellow);
+.table-ss-yellow {
+  background-color: $starsiege-table-yellow;
+  color: $starsiege-text-green;
+}

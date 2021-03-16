@@ -1,7 +1,15 @@
 @import "../../../node_modules/bootstrap/scss/mixins";
 
+$starsiege-blue: #18303f;
+$starsiege-yellow: #423604;
+$starsiege-text-green: #0a7300;
+$starsiege-text-yellow: #d5ab00;
+
+$starsiege-nav-blue: transparentize($starsiege-blue, 0.5);
+$starsiege-nav-yellow: transparentize($starsiege-yellow, 0.5);
+
 $body-bg: black;
-$primary: #18303f;
+$primary: $starsiege-nav-blue;
 $link-color: #ffffff;
 $border-color: #003977;
 

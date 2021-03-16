@@ -12,6 +12,7 @@ $web-font-path: '';
 @import "node_modules/bootswatch/dist/darkly/variables";
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "node_modules/bootswatch/dist/darkly/bootswatch";
+@import "app/tables";
 
 // font-awesome things
 $fa-font-path: '#{$app-font-dir}/FontAwesome';

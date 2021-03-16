@@ -16,6 +16,19 @@
     .row {
         margin-bottom: 1.5rem;
     }
+
+    .table>caption {
+        color: white;
+        text-align: center;
+    }
+
+    .table>:not(caption)>*>span {
+        padding: 0 0.1rem !important;
+    }
+
+    .table>:not(caption)>*>* {
+        background-color: transparent;
+    }
 </style>
 
 {#if $info.Masters.length <= 0 && $info.Games.length <= 0 && $info.Errors.Length <= 0}
@@ -25,25 +38,25 @@
 {/if}
 
 {#if $info.Masters.length > 0}
-<div class="row justify-content-center">
-    <h5 class="text-center">Master Servers</h5>
-    <table cellspacing="0">
-        <tr>
-            <th class="header">No.</th>
-            <th class="header">Hostname</th>
-            <th class="header">Server Name</th>
-            <th class="header">MOTD</th>
-            <th class="header">Reported Games</th>
-            <th class="header">Ping</th>
+<div class="row justify-content-center table-responsive">
+    <table class="table table-ss-blue table-bordered table-striped table-hover caption-top">
+        <caption class="h4">Master Servers</caption>
+        <tr class="table-ss-yellow">
+            <th scope="col">No.</th>
+            <th scope="col">Hostname</th>
+            <th scope="col">Server Name</th>
+            <th scope="col">MOTD</th>
+            <th scope="col">Reported Games</th>
+            <th scope="col">Ping</th>
         </tr>
         {#each $info.Masters as master, i}
         <tr>
-            <td class="server start">{i+1}</td>
-            <td class="server">{master.Address}</td>
-            <td class="server">{master.CommonName}</td>
-            <td class="server">{master.MOTD}</td>
-            <td class="server">{master.ServerCount}</td>
-            <td class="server end">{Math.floor(master.Ping / 1000000)} ms</td>
+            <th scope="row">{i+1}</th>
+            <td>{master.Address}</td>
+            <td>{master.CommonName}</td>
+            <td>{master.MOTD}</td>
+            <td>{master.ServerCount}</td>
+            <td>{Math.floor(master.Ping / 1000000)} ms</td>
         </tr>
         {/each}
     </table>
@@ -51,33 +64,33 @@
 {/if}
 
 {#if $info.Games.length > 0}
-<div class="row justify-content-center">
-    <h5 class="text-center">Game Servers</h5>
-    <table cellspacing="0">
-        <tr>
-            <th class="header">No.</th>
-            <th class="header">Server Name</th>
-            <th class="header">Started</th>
-            <th class="header">Legacy Clients</th>
-            <th class="header">Players</th>
-            <th class="header">Ping</th>
-            <th class="header">Server Address</th>
+<div class="row justify-content-center table-responsive">
+    <table class="table table-ss-blue table-bordered table-striped table-hover caption-top">
+        <caption class="h4">Game Servers</caption>
+        <tr class="table-ss-yellow">
+            <th scope="col">No.</th>
+            <th scope="col">Server Name</th>
+            <th scope="col">Started</th>
+            <th scope="col">Legacy Clients</th>
+            <th scope="col">Players</th>
+            <th scope="col">Ping</th>
+            <th scope="col">Server Address</th>
         </tr>
         {#each $info.Games as game, i}
         <tr>
-            <td class="server start">{i+1}</td>
-            <td class="server">
+            <th scope="row">{i+1}</th>
+            <td>
                 {#if game.GameStatus.Protected}<span class="sb-protected"></span>{/if}
                 {#if game.GameStatus.Dedicated}<span class="sb-dedicated"></span>{/if}
                 {#if game.GameStatus.Dynamix}<span class="sb-dynamix"></span>{/if}
                 {#if game.GameStatus.WON}<span class="sb-won"></span>{/if}
                 {game.Name}
             </td>
-            <td class="server">{game.GameStatus.Started ? "yes" : "no"}</td>
-            <td class="server">{game.GameStatus.AllowOldClients ? "yes" : "no"}</td>
-            <td class="server">{game.PlayerCount} / {game.MaxPlayers}</td>
-            <td class="server">{Math.floor(game.Ping / 1000000)} ms</td>
-            <td class="server end"><a href="starsiege://{game.Address}">{game.Address}</a></td>
+            <td>{game.GameStatus.Started ? "yes" : "no"}</td>
+            <td>{game.GameStatus.AllowOldClients ? "yes" : "no"}</td>
+            <td>{game.PlayerCount} / {game.MaxPlayers}</td>
+            <td>{Math.floor(game.Ping / 1000000)} ms</td>
+            <td><a href="starsiege://{game.Address}">{game.Address}</a></td>
         </tr>
         {/each}
     </table>
@@ -85,14 +98,15 @@
 {/if}
 <hr />
 {#if $info.Errors.length > 0}
-<div class="row justify-content-center">
-    <h5 class="text-center">Errors Encountered</h5>
-    <div class="row">
-        <table cellspacing="0">
-            {#each $info.Errors as error}
-            <tr><td>{error}</td></tr>
-            {/each}
-        </table>
-    </div>
+<div class="row justify-content-center table-responsive">
+    <table class="table table-ss-blue table-bordered table-striped table-hover caption-top">
+        <caption class="h4">Errors Encountered</caption>
+        {#each $info.Errors as error, i}
+        <tr>
+            <th scope="row">{i+1}</th>
+            <td>{error}</td>
+        </tr>
+        {/each}
+    </table>
 </div>
 {/if}
