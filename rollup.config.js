@@ -46,8 +46,17 @@ export default {
 	plugins: [
 		copy({
 			targets: [
-				{ src: [SOURCE_STATIC_DIR, '!index.html'], dest: `${OUT_DIR}/` },
-				{ src: `${SOURCE_STATIC_DIR}/index.html`, dest: `${OUT_DIR}/` }
+				{ src: [SOURCE_STATIC_DIR,
+						'!**/index.html',
+						'!**/browserconfig.xml',
+						'!**/favicon.ico',
+						'!**/manifest.webmanifest',
+						], dest: `${OUT_DIR}/` },
+				{ src: [`${SOURCE_STATIC_DIR}/index.html`,
+						`${SOURCE_STATIC_DIR}/browserconfig.xml`,
+						`${SOURCE_STATIC_DIR}/favicon.ico`,
+						`${SOURCE_STATIC_DIR}/manifest.webmanifest`,
+					], dest: `${OUT_DIR}/` }
 			],
 			verbose: true
 		}),
