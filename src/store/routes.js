@@ -12,7 +12,7 @@ import MissionStats from "../../content/Campaign/Stats.md"
 import Terrain from "../../content/Campaign/Terrain.md"
 
 import Servers from "../views/ServerBrowser.svelte"
-import ServerStats from "../../content/Multiplayer/Stats.md"
+import ServerStats from "../views/ServerStats.svelte"
 import ServerMap from "../../content/Multiplayer/Map.md"
 
 import News from "../../content/Community/News.md"

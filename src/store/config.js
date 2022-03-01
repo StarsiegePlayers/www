@@ -33,9 +33,10 @@ export default {
     },
 
     Discord: {
-        GuildID: "297873205316681728",
-        Image: "https://discordapp.com/api/guilds/297873205316681728/embed.png?style=banner2",
-        Invite: "https://discord.gg/KA4N6J8",
+        GuildID: "938588777465655298",
+        Image: "https://discordapp.com/api/guilds/938588777465655298/widget.png?style=banner2",
+        SmallImage: "https://discordapp.com/api/guilds/938588777465655298/widget.png",
+        Invite: "https://discord.gg/ZR7ZH7RBdU",
         Theme: "dark",
         Text: "Join us on Discord!",
     },

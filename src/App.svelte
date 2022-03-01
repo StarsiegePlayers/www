@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
     import {onDestroy, onMount} from 'svelte';
     import {globalHistory} from 'svelte-routing/src/history';
     import {currentPath} from "./store/history.js"

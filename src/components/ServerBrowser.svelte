@@ -1,5 +1,6 @@
 <script>
     import http from "../store/http";
+    import {onInterval} from "./interval";
     const defaultData = {
         "RequestTime": "",
         "Masters": [],
@@ -7,8 +8,18 @@
         "Errors": [],
     };
     const info = http(defaultData);
-    info.get("/api/v1/multiplayer/servers");
 
+    function intervalCallback() {
+        info.get("/api/v1/multiplayer/servers");
+    }
+
+    // pull some initial data
+    intervalCallback();
+
+    // update every minute
+    onInterval(intervalCallback, 1000*60);
+
+    // export our dynamic info up
     export const ServerInfo = info;
 </script>
 
@@ -38,7 +49,7 @@
 {/if}
 
 {#if $info.Masters.length > 0}
-<div class="row justify-content-center table-responsive">
+<div class="row table-responsive">
     <table class="table table-ss-blue table-bordered table-striped table-hover caption-top">
         <caption class="h4">Master Servers</caption>
         <tr class="table-ss-yellow">
@@ -64,7 +75,7 @@
 {/if}
 
 {#if $info.Games.length > 0}
-<div class="row justify-content-center table-responsive">
+<div class="row table-responsive">
     <table class="table table-ss-blue table-bordered table-striped table-hover caption-top">
         <caption class="h4">Game Servers</caption>
         <tr class="table-ss-yellow">
@@ -98,7 +109,7 @@
 {/if}
 <hr />
 {#if $info.Errors.length > 0}
-<div class="row justify-content-center table-responsive">
+<div class="row table-responsive">
     <table class="table table-ss-blue table-bordered table-striped table-hover caption-top">
         <caption class="h4">Errors Encountered</caption>
         {#each $info.Errors as error, i}

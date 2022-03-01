@@ -1,11 +1,12 @@
 <!--suppress HtmlUnknownTarget -->
 <script>
     import {link} from 'svelte-routing'
+    import MediaQuery from "./MediaQuery.svelte"
     import PageContent from "./PageContent.svelte"
     import NavbarTop from "./NavbarTop.svelte"
     import config from "../store/config"
 
-    let menuActive=false;
+    let menuActive = false;
 </script>
 
 <div class="d-flex" id="wrapper" class:toggled={menuActive}>
@@ -20,8 +21,14 @@
 
     <div id="page-content-wrapper">
         <NavbarTop bind:menuActive={menuActive}>
-            <a href={config.Discord.Invite}>
-                <img class="img-fluid" alt={config.Discord.Text} id="header-image" src={config.Discord.Image}/>
+            <a href={config.Discord.Invite} target="_blank">
+                <MediaQuery query="(max-width: 480px)" let:matches>
+                    {#if matches}
+                        <img class="img-fluid" alt={config.Discord.Text} id="header-image-small" src={config.Discord.SmallImage}/>
+                    {:else}
+                        <img class="img-fluid" alt={config.Discord.Text} id="header-image" src={config.Discord.Image}/>
+                    {/if}
+                </MediaQuery>
             </a>
         </NavbarTop>
         <div class="modal"></div>
